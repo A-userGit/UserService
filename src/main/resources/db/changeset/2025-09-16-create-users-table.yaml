@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: create
+      author: Aliaksandr Siamchonak
+      changes:
+        - createSequence:
+            sequenceName: users_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: surname
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: birth_date
+                  type: date
+        - createIndex:
+            indexName: idx_users_id
+            tableName: users
+            columns:
+              - column:
+                  name: id
+        - createIndex:
+            indexName: idx_users_email
+            tableName: users
+            columns:
+              - column:
+                  name: email
