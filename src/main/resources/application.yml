@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: user-service
+    port: 8080
+  cache:
+    type: redis
+  data:
+    redis:
+      host: redis
+      port: 6379
+      ttl: 5
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/user_service
+    username: admin
+    password: admin
+  liquibase:
+    enabled: true
+    drop-first: false
+    change-log: classpath:db/changelog-master.yaml
+    default-schema: public
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+
+swagger-server: http://localhost:8080/
