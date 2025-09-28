@@ -6,17 +6,17 @@ import java.util.List;
 
 public interface UserService {
 
-  public UserDto createUser(UserDto userData);
+  UserDto createUser(UserDto userData);
 
-  public UserDto getUserById(long id);
+  UserDto getUserById(long id);
 
-  public User getDBUserById(long id);
+  User getDBUserById(long id);
 
-  public List<UserDto> getUsersByIds(List<Long> ids);
+  List<UserDto> getUsersByIds(List<Long> ids);
 
-  public UserDto getUserByEmail(String email);
+  UserDto getUserByEmail(String email);
 
-  public UserDto updateUserById(UserDto userData);
+  UserDto updateUserById(UserDto userData);
 
-  public void deleteUserById(long id);
+  void deleteUserById(long id);
 }

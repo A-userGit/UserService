@@ -66,20 +66,20 @@ public class MultiCacheableAspect {
   }
 
   public int findKeysParameterPlace(Method method, String keysCollectionName) {
-    int i = 0;
+    int place = 0;
     boolean isPresent = false;
     for (Parameter parameter : method.getParameters()) {
       if (parameter.getName().matches(keysCollectionName)) {
         isPresent = true;
         break;
       }
-      i++;
+      place++;
     }
     if (!isPresent) {
       throw MultiCacheableInvalidArgsException.invalidArgsException(keysCollectionName,
           method.getName());
     }
-    return i;
+    return place;
   }
 
   public List<String> getKeys(Object data) {

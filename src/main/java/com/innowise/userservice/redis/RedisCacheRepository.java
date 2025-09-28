@@ -5,8 +5,8 @@ import java.util.Map;
 
 public interface RedisCacheRepository {
 
-  public Map<String, Object> getObjectsFromCache(String cacheName, List<String> keys);
+  Map<String, Object> getObjectsFromCache(String cacheName, List<String> keys);
 
-  public void putObjectsInCache(String cacheName, Map<String, Object> objects);
+  void putObjectsInCache(String cacheName, Map<String, Object> objects);
 
 }

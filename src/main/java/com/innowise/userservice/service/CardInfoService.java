@@ -5,14 +5,14 @@ import java.util.List;
 
 public interface CardInfoService {
 
-  public CardInfoDto createCardInfo(CardInfoDto cardData);
+  CardInfoDto createCardInfo(CardInfoDto cardData);
 
-  public CardInfoDto getCardInfoById(long id);
+  CardInfoDto getCardInfoById(long id);
 
-  public List<CardInfoDto> getCardInfoByIds(List<Long> ids);
+  List<CardInfoDto> getCardInfoByIds(List<Long> ids);
 
-  public CardInfoDto updateCardInfoById(CardInfoDto cardInfoData);
+  CardInfoDto updateCardInfoById(CardInfoDto cardInfoData);
 
-  public void deleteCardInfoById(long id);
+  void deleteCardInfoById(long id);
 
 }

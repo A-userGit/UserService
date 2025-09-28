@@ -5,6 +5,7 @@ import com.innowise.userservice.service.CardInfoService;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,30 +27,30 @@ public class CardInfoController {
   @PostMapping("create")
   ResponseEntity<CardInfoDto> createCardInfo(@Valid @RequestBody CardInfoDto data) {
     CardInfoDto cardInfo = cardInfoService.createCardInfo(data);
-    return new ResponseEntity<>(cardInfo, HttpStatusCode.valueOf(201));
+    return new ResponseEntity<>(cardInfo, HttpStatus.CREATED);
   }
 
   @PatchMapping("update")
   ResponseEntity<CardInfoDto> updateUser(@Valid @RequestBody CardInfoDto data) {
     CardInfoDto cardInfo = cardInfoService.updateCardInfoById(data);
-    return new ResponseEntity<>(cardInfo, HttpStatusCode.valueOf(200));
+    return new ResponseEntity<>(cardInfo, HttpStatus.OK);
   }
 
   @GetMapping("get/id")
   ResponseEntity<CardInfoDto> getById(@RequestParam(name = "id") Long id) {
     CardInfoDto cardInfoById = cardInfoService.getCardInfoById(id);
-    return new ResponseEntity<>(cardInfoById, HttpStatusCode.valueOf(200));
+    return new ResponseEntity<>(cardInfoById, HttpStatus.OK);
   }
 
   @PostMapping("get/multiple")
   ResponseEntity<List<CardInfoDto>> getByIds(@RequestBody List<Long> ids) {
     List<CardInfoDto> cards = cardInfoService.getCardInfoByIds(ids);
-    return new ResponseEntity<>(cards, HttpStatusCode.valueOf(200));
+    return new ResponseEntity<>(cards, HttpStatus.OK);
   }
 
   @DeleteMapping("delete")
   ResponseEntity<?> deleteById(@RequestParam(name = "id") Long id) {
     cardInfoService.deleteCardInfoById(id);
-    return new ResponseEntity<>(HttpStatusCode.valueOf(204));
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }

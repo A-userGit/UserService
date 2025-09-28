@@ -12,6 +12,7 @@
     <org.mapstruct.version>1.6.3</org.mapstruct.version>
     <lombok.version>1.18.40</lombok.version>
     <testcontainers.version>1.21.3</testcontainers.version>
+    <sonar.organization>alexander-sonar</sonar.organization>
   </properties>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -117,6 +118,21 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.5.4</version>
+        <configuration>
+          <aggregate>true</aggregate>
+          <linkXRef>true</linkXRef>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
   <build>
     <finalName>user-service</finalName>
     <plugins>

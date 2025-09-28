@@ -7,6 +7,7 @@ import jakarta.validation.ConstraintViolationException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -51,5 +52,11 @@ public class ErrorHandlerController {
   public ResponseEntity<String> handleMultiCacheableInvalidArgsException(
       final MultiCacheableInvalidArgsException e) {
     return ResponseEntity.internalServerError().body(e.getMessage());
+  }
+
+  @ExceptionHandler(EmptyResultDataAccessException.class)
+  public ResponseEntity<String> handleEmptyResultDataAccessException(
+      final EmptyResultDataAccessException e) {
+    return ResponseEntity.unprocessableEntity().body(e.getMessage());
   }
 }
