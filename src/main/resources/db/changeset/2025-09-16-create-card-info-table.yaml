@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: create
+      author: Aliaksandr Siamchonak
+      changes:
+        - createSequence:
+            sequenceName: card_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: card_info
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: number
+                  type: varchar(255)
+              - column:
+                  name: holder
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: expiration_date
+                  type: date
+              - column:
+                  name: user_id
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseTableName: card_info
+            baseColumnNames: user_id
+            constraintName: fk_card_user
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
