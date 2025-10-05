@@ -1,4 +1,4 @@
-package com.innowise.aop.redis;
+package com.innowise.userservice.unit.aop;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -9,4 +9,6 @@ public interface RedisCacheRepository {
 
   void putObjectsInCache(String cacheName, Map<String, Object> objects);
 
+  void putObjectInCache(String cacheName, String key, Object object);
+
 }

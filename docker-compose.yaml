@@ -29,6 +29,28 @@ services:
       retries: 5
     restart: unless-stopped
 
+  auth-service:
+    container_name: auth-service
+    build:
+      context: ./../AuthService
+      dockerfile: Dockerfile
+    image: auth-service
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - 8082:8082
+    healthcheck:
+      test: "curl --fail --silent localhost:8082/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    links:
+      - postgres
+      - redis
+
   user-service:
     container_name: user-service
     build:
@@ -41,6 +63,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      auth-service:
+        condition: service_healthy
     ports:
       - 8080:8080
     healthcheck:
@@ -51,7 +75,34 @@ services:
       start_period: 40s
     links:
       - postgres
-      - redis
+      - auth-service
+
+  order-service:
+    container_name: order-service
+    build:
+      context: ./../OrderService
+      dockerfile: Dockerfile
+    image: order-service
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      auth-service:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+    ports:
+      - 8083:8083
+    healthcheck:
+      test: "curl --fail --silent localhost:8083/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    links:
+      - postgres
+      - auth-service
+      - user-service
 
 volumes:
   postgres_data:

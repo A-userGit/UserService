@@ -1,10 +1,13 @@
 package com.innowise.userservice.service.impl;
 
 import com.innowise.userservice.aop.MultiCacheable;
+import com.innowise.userservice.dto.CreateUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.entity.User;
+import com.innowise.userservice.exception.ObjectAlreadyExistsException;
 import com.innowise.userservice.exception.ObjectNotFoundException;
 import com.innowise.userservice.mapper.UserMapper;
+import com.innowise.userservice.redis.RedisCacheRepository;
 import com.innowise.userservice.repository.UserRepository;
 import com.innowise.userservice.service.UserService;
 import jakarta.transaction.Transactional;
@@ -20,14 +23,21 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
+  private final RedisCacheRepository redisCacheRepository;
   private final UserMapper mapper;
 
   @Override
   @Transactional
-  @CachePut(value = "users", key = "#userData.id")
-  public UserDto createUser(UserDto userData) {
+  public UserDto createUser(CreateUserDto userData) {
+    User foundByEmail = userRepository.findByEmail(userData.getEmail());
+    if(foundByEmail!=null){
+      throw ObjectAlreadyExistsException.entityAlreadyExists("User", "email", userData.getEmail());
+    }
     User newUser = mapper.toUser(userData);
-    return mapper.toUserDto(userRepository.save(newUser));
+    User savedUser = userRepository.save(newUser);
+    UserDto userDto = mapper.toUserDto(savedUser);
+    redisCacheRepository.putObjectInCache("users", String.valueOf(savedUser.getId()), userDto);
+    return userDto;
   }
 
   @Override
