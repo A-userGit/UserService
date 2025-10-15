@@ -1,4 +1,4 @@
-package com.innowise.userservice.service.impl;
+package com.innowise.userservice.unit.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -7,11 +7,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.innowise.userservice.dto.CreateUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.entity.User;
 import com.innowise.userservice.exception.ObjectNotFoundException;
 import com.innowise.userservice.mapper.UserMapper;
+import com.innowise.userservice.redis.RedisCacheRepository;
 import com.innowise.userservice.repository.UserRepository;
+import com.innowise.userservice.service.impl.UserServiceImpl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,6 +36,9 @@ public class UserServiceUnitTest {
   private UserRepository userRepository;
 
   @Mock
+  private RedisCacheRepository redisCacheRepository;
+
+  @Mock
   private UserMapper mapper;
 
   @InjectMocks
@@ -45,7 +51,7 @@ public class UserServiceUnitTest {
     UserDto userDto = getUserDto();
     when(userRepository.save(any())).thenReturn(user);
     when(mapper.toUserDto(any())).thenReturn(userDto);
-    when(mapper.toUser(any())).thenReturn(user);
+    when(mapper.toUser(any(CreateUserDto.class))).thenReturn(user);
     UserDto result = userService.createUser(userDto);
     verify(userRepository, times(1)).save(any());
     verify(mapper, times(1)).toUserDto(any());

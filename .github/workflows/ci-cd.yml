@@ -34,16 +34,10 @@ jobs:
         with:
           java-version: 21
           distribution: 'temurin'
-      - name: Start docker
-        id: start-docker
-        run: docker compose -f docker-compose.yaml up -d --build
-      - name: Wait for services to be ready (example for a web service)
-        run: |
-          for i in $(seq 1 10); do
-            curl --fail http://localhost:8080/healthz && break
-            echo "Waiting for service..."
-            sleep 5
-          done
+      - name: Add host mapping
+        run: sudo echo "127.0.0.1 auth-service" | sudo tee -a /etc/hosts
+      - name: Add host mapping
+        run: sudo echo "127.0.0.1 user-service" | sudo tee -a /etc/hosts
       - name: Run Integration Tests
         run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
       - name: report
@@ -54,9 +48,6 @@ jobs:
             path: target/surefire-reports/*.xml
             reporter: java-junit
             fail-on-error: true
-      - name: Stop Docker Compose services
-        if: steps.start-docker.outcome == 'success'
-        run: docker compose down
   sonar-validate:
     needs: run-tests
     name: Run sonarcube analysis

@@ -2,10 +2,12 @@ package com.innowise.userservice.service.impl;
 
 import com.innowise.userservice.aop.MultiCacheable;
 import com.innowise.userservice.dto.CardInfoDto;
+import com.innowise.userservice.dto.CreateCardInfoDto;
 import com.innowise.userservice.entity.CardInfo;
 import com.innowise.userservice.entity.User;
 import com.innowise.userservice.exception.ObjectNotFoundException;
 import com.innowise.userservice.mapper.CardInfoMapper;
+import com.innowise.userservice.redis.RedisCacheRepository;
 import com.innowise.userservice.repository.CardInfoRepository;
 import com.innowise.userservice.service.CardInfoService;
 import com.innowise.userservice.service.UserService;
@@ -24,16 +26,20 @@ public class CardInfoServiceImpl implements CardInfoService {
 
   private final CardInfoRepository cardInfoRepository;
   private final UserService userService;
+  private final RedisCacheRepository redisCacheRepository;
   private final CardInfoMapper mapper;
 
   @Override
   @Transactional
-  @CachePut(value = "cards", key = "#cardData.id")
-  public CardInfoDto createCardInfo(CardInfoDto cardData) {
+  public CardInfoDto createCardInfo(CreateCardInfoDto cardData) {
     CardInfo cardInfo = mapper.toCardInfo(cardData);
     User user = userService.getDBUserById(cardInfo.getUser().getId());
     cardInfo.setUser(user);
-    return mapper.toCardInfoDto(cardInfoRepository.save(cardInfo));
+    CardInfo savedCardInfo = cardInfoRepository.save(cardInfo);
+    CardInfoDto cardInfoDto = mapper.toCardInfoDto(savedCardInfo);
+    redisCacheRepository.putObjectInCache("cards", String.valueOf(cardInfoDto.getId()),
+        cardInfoDto);
+    return cardInfoDto;
   }
 
   @Override

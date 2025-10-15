@@ -1,4 +1,4 @@
-package com.innowise.userservice.service.impl;
+package com.innowise.userservice.unit.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,12 +9,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.innowise.userservice.dto.CardInfoDto;
+import com.innowise.userservice.dto.CreateCardInfoDto;
 import com.innowise.userservice.entity.CardInfo;
 import com.innowise.userservice.entity.User;
 import com.innowise.userservice.exception.ObjectNotFoundException;
 import com.innowise.userservice.mapper.CardInfoMapper;
+import com.innowise.userservice.redis.RedisCacheRepository;
 import com.innowise.userservice.repository.CardInfoRepository;
 import com.innowise.userservice.service.UserService;
+import com.innowise.userservice.service.impl.CardInfoServiceImpl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +37,10 @@ public class CardInfoServiceUnitTest {
 
   @Mock
   private CardInfoRepository cardInfoRepository;
+
+  @Mock
+  private RedisCacheRepository redisCacheRepository;
+
   @Mock
   private UserService userService;
   @Mock
@@ -51,8 +58,8 @@ public class CardInfoServiceUnitTest {
     user.setId(1);
     when(userService.getDBUserById(anyLong())).thenReturn(user);
     when(cardInfoRepository.save(any())).thenReturn(cardInfo);
-    when(mapper.toCardInfoDto(any())).thenReturn(cardInfoDto);
-    when(mapper.toCardInfo(any())).thenReturn(cardInfo);
+    when(mapper.toCardInfoDto(any(CardInfo.class))).thenReturn(cardInfoDto);
+    when(mapper.toCardInfo(any(CreateCardInfoDto.class))).thenReturn(cardInfo);
     CardInfoDto cardInfoCreated = cardInfoService.createCardInfo(cardInfoDto);
     verify(cardInfoRepository, times(1)).save(any());
     verify(mapper, times(1)).toCardInfoDto(any());

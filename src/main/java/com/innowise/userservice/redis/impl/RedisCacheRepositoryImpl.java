@@ -46,4 +46,13 @@ public class RedisCacheRepositoryImpl implements RedisCacheRepository {
       cache.put(key, objects.get(key));
     }
   }
+
+  @Override
+  public void putObjectInCache(String cacheName, String key, Object object) {
+    Cache cache = cacheManager.getCache(cacheName);
+    if (cache == null) {
+      throw new CacheException("Cache" + cacheName + " is missing");
+    }
+    cache.put(key, object);
+  }
 }

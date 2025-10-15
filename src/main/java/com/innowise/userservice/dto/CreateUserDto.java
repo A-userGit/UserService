@@ -11,11 +11,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto extends CreateUserDto {
-  private long id;
+public class CreateUserDto {
 
-  public UserDto(long id, String name, String surname, String birthDate, String email) {
-    super(name, surname, birthDate, email);
-    this.id = id;
-  }
+  private String name;
+  private String surname;
+
+  @Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-\\d{4}$",
+      message = "Invalid date format. The expected format is dd-MM-yyyy")
+  private String birthDate;
+
+  @Email
+  private String email;
 }
