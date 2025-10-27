@@ -62,7 +62,7 @@ public class UserControllerIntegrationTest extends BaseIntegrationTest {
   @WithMockUser
   public void createTest() {
     try {
-      CreateUserDto user = new CreateUserDto("testNew", "testNewS", "11-11-2222",
+      CreateUserDto user = new CreateUserDto("testNew", "testNewS",1, "11-11-2222",
           "testNew1@mail.com");
       ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
       String userJSON = ow.writeValueAsString(user);

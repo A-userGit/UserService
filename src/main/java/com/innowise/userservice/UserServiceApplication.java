@@ -3,8 +3,6 @@ package com.innowise.userservice;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.security.OAuthFlow;
-import io.swagger.v3.oas.annotations.security.OAuthFlows;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.boot.SpringApplication;
@@ -22,12 +20,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
         version = "1.0",
         description = "User service")
 )@SecurityScheme(name = "user_security",
-    type = SecuritySchemeType.OAUTH2,
-    flows = @OAuthFlows(authorizationCode =
-    @OAuthFlow(authorizationUrl = "${springdoc.oAuthFlow.authorizationUrl}",
-        tokenUrl = "${springdoc.oAuthFlow.tokenUrl}"
-
-    ))
+    type = SecuritySchemeType.HTTP,
+    scheme = "bearer",
+    bearerFormat = "JWT",
+    description = "Enter the token without the `Bearer: ` prefix, e.g. abcde12345"
 )
 public class UserServiceApplication {
 

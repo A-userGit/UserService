@@ -15,6 +15,7 @@ public class CreateUserDto {
 
   private String name;
   private String surname;
+  private long externalId;
 
   @Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-\\d{4}$",
       message = "Invalid date format. The expected format is dd-MM-yyyy")

@@ -32,6 +32,9 @@ databaseChangeLog:
               - column:
                   name: birth_date
                   type: date
+              - column:
+                  name: external_id
+                  type: bigint
         - createIndex:
             indexName: idx_users_id
             tableName: users
