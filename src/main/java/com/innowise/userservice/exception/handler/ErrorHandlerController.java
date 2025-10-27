@@ -69,14 +69,12 @@ public class ErrorHandlerController {
   }
 
   @ExceptionHandler(Forbidden.class)
-  public ResponseEntity<String> handleForbiddenException(
-      final EmptyResultDataAccessException e) {
+  public ResponseEntity<String> handleForbiddenException(final Forbidden e) {
     return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
   }
 
   @ExceptionHandler(Unauthorized.class)
-  public ResponseEntity<String> handleUnauthorizedException(
-      final EmptyResultDataAccessException e) {
+  public ResponseEntity<String> handleUnauthorizedException(final Unauthorized e) {
     return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
   }
 }
