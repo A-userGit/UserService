@@ -41,6 +41,9 @@ public class User {
   @Column(name = "email")
   private String email;
 
+  @Column(name = "external_id")
+  private long externalId;
+
   @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
   private List<CardInfo> cards;
 

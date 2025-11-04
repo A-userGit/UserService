@@ -48,11 +48,13 @@ public class UserServiceUnitTest {
   @DisplayName("Try to create user")
   public void createUserUnitTest() {
     User user = getUser();
+    CreateUserDto createUserDto = new CreateUserDto("name", "sname", 1, "11-11-2222",
+        "testNew1@mail.com");
     UserDto userDto = getUserDto();
     when(userRepository.save(any())).thenReturn(user);
     when(mapper.toUserDto(any())).thenReturn(userDto);
     when(mapper.toUser(any(CreateUserDto.class))).thenReturn(user);
-    UserDto result = userService.createUser(userDto);
+    UserDto result = userService.createUser(createUserDto);
     verify(userRepository, times(1)).save(any());
     verify(mapper, times(1)).toUserDto(any());
     assertEquals(3, result.getId());
@@ -76,7 +78,7 @@ public class UserServiceUnitTest {
     when(userRepository.existsById(any())).thenReturn(true);
     when(userRepository.save(any())).thenReturn(user);
     when(mapper.toUserDto(any())).thenReturn(userDto);
-    when(mapper.toUser(any())).thenReturn(user);
+    when(mapper.toUser(any(UserDto.class))).thenReturn(user);
     userService.updateUserById(userDto);
     verify(userRepository, times(1)).existsById(any());
     verify(userRepository, times(1)).save(any());
