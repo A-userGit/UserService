@@ -50,7 +50,7 @@ public abstract class BaseIntegrationTest {
     propertyRegistry.add("spring.datasource.url", postgres::getJdbcUrl);
     propertyRegistry.add("spring.data.redis.host", redis::getHost);
     propertyRegistry.add("spring.data.redis.port", () -> redis.getMappedPort(6379).toString());
-    propertyRegistry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri", () -> server.issuerUrl(".well-known/openid-configuration").toString());
-    propertyRegistry.add("spring.security.oauth2.client.provider.my-oidc-provider.issuer-uri", () -> server.issuerUrl(".well-known/openid-configuration").toString());
+    propertyRegistry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri",
+        () -> server.issuerUrl(".well-known/openid-configuration").toString());
   }
 }

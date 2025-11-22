@@ -39,12 +39,4 @@ springdoc:
   swagger-ui:
     csrf:
       enabled: true
-    oauth:
-      client-id: user-client
-      use-pkce-with-authorization-code-grant: false
-    oauth2-redirect-url: http://user-service:8080/swagger-ui/oauth2-redirect.html
-  oAuthFlow:
-    authorizationUrl: http://auth-service:8082/oauth2/authorize
-    tokenUrl: http://auth-service:8082/oauth2/token
-    scopes: openid
 swagger-server: http://user-service:8080/
