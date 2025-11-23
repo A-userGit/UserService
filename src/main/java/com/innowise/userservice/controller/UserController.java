@@ -1,13 +1,14 @@
 package com.innowise.userservice.controller;
 
+import com.innowise.userservice.dto.CreateUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +19,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@SecurityRequirement(name = "user_security")
 @RestController
-@RequestMapping("/users/")
+@RequestMapping("/api/v1/users/")
 @RequiredArgsConstructor
 public class UserController {
 
   private final UserService userService;
 
   @PostMapping("create")
-  ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto data) {
+  ResponseEntity<UserDto> createUser(@Valid @RequestBody CreateUserDto data) {
     UserDto user = userService.createUser(data);
     return new ResponseEntity<>(user, HttpStatus.CREATED);
   }
@@ -37,19 +39,19 @@ public class UserController {
     return new ResponseEntity<>(user, HttpStatus.OK);
   }
 
-  @GetMapping("get/email")
+  @GetMapping("user/by-email")
   ResponseEntity<UserDto> getByEmail(@RequestParam(name = "email") @Email String email) {
     UserDto userByEmail = userService.getUserByEmail(email);
     return new ResponseEntity<>(userByEmail, HttpStatus.OK);
   }
 
-  @GetMapping("get/id")
+  @GetMapping("user")
   ResponseEntity<UserDto> getById(@RequestParam(name = "id") Long id) {
     UserDto userById = userService.getUserById(id);
     return new ResponseEntity<>(userById, HttpStatus.OK);
   }
 
-  @PostMapping("get/multiple")
+  @PostMapping("search")
   ResponseEntity<List<UserDto>> getByIds(@RequestBody List<Long> ids) {
     List<UserDto> users = userService.getUsersByIds(ids);
     return new ResponseEntity<List<UserDto>>(users, HttpStatus.OK);

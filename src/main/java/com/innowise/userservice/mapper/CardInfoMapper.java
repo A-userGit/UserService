@@ -1,6 +1,7 @@
 package com.innowise.userservice.mapper;
 
 import com.innowise.userservice.dto.CardInfoDto;
+import com.innowise.userservice.dto.CreateCardInfoDto;
 import com.innowise.userservice.entity.CardInfo;
 import com.innowise.userservice.entity.User;
 import org.mapstruct.Mapper;
@@ -17,6 +18,11 @@ public interface CardInfoMapper {
   @Mapping(target = "expirationDate", dateFormat = "dd-MM-yyyy")
   @Mapping(source = "userId", target = "user", qualifiedByName = "setUserWithId")
   CardInfo toCardInfo(CardInfoDto source);
+
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "expirationDate", dateFormat = "dd-MM-yyyy")
+  @Mapping(source = "userId", target = "user", qualifiedByName = "setUserWithId")
+  CardInfo toCardInfo(CreateCardInfoDto source);
 
   @Named("setUserWithId")
   public static User setUserWithId(int userId) {
