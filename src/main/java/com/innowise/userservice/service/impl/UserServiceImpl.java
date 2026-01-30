@@ -2,6 +2,7 @@ package com.innowise.userservice.service.impl;
 
 import com.innowise.userservice.aop.MultiCacheable;
 import com.innowise.userservice.dto.CreateUserDto;
+import com.innowise.userservice.dto.ShortUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.entity.User;
 import com.innowise.userservice.exception.ObjectAlreadyExistsException;
@@ -15,6 +16,10 @@ import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -82,6 +87,27 @@ public class UserServiceImpl implements UserService {
   public void deleteUserById(long id) {
     checkIfExists(id);
     userRepository.deleteById(id);
+  }
+
+  @Override
+  public ShortUserDto getCurrentUser() {
+    String email;
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null && authentication.isAuthenticated()) {
+      Object principal = authentication.getPrincipal();
+      if (principal instanceof UserDetails) {
+        email = ((UserDetails) principal).getUsername();
+      } else {
+        throw  new AuthenticationServiceException("Invalid auth token format.");
+      }
+    } else {
+      throw  new AuthenticationServiceException("Not authenticated.");
+    }
+    User byEmail = userRepository.findByEmail(email);
+    if(byEmail==null){
+      throw new AuthenticationServiceException("User not found.");
+    }
+    return mapper.toShortUserDto(byEmail);
   }
 
   private void checkIfExists(long id) {
