@@ -1,6 +1,7 @@
 package com.innowise.userservice.controller;
 
 import com.innowise.userservice.dto.CreateUserDto;
+import com.innowise.userservice.dto.ShortUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -61,5 +62,11 @@ public class UserController {
   ResponseEntity<?> deleteById(@RequestParam(name = "id") Long id) {
     userService.deleteUserById(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  @GetMapping("current")
+  ResponseEntity<ShortUserDto> getCurrentUser() {
+    ShortUserDto currentUser = userService.getCurrentUser();
+    return new ResponseEntity<>(currentUser, HttpStatus.OK);
   }
 }
