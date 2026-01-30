@@ -7,4 +7,4 @@ RUN mvn package spring-boot:repackage -DskipTests
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
 COPY --from=build /workspace/app/target/user-service.jar /app
-CMD ["java","-jar", "/app/user-service.jar"]
+CMD ["java","-jar","/app/user-service.jar"]

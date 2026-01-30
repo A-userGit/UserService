@@ -40,3 +40,18 @@ springdoc:
     csrf:
       enabled: true
 swagger-server: http://user-service:8080/
+
+otel:
+  traces:
+    sampler: always_on
+  exporter:
+    otlp:
+      traces:
+        endpoint: http://otel-collector.monitoring.svc.cluster.local:4317
+        protocol: grpc
+      metrics:
+        endpoint: http://otel-collector.monitoring.svc.cluster.local:4317
+        protocol: grpc
+      logs:
+        endpoint: http://otel-collector.monitoring.svc.cluster.local:4317
+        protocol: grpc
