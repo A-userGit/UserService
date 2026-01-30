@@ -1,6 +1,7 @@
 package com.innowise.userservice.mapper;
 
 import com.innowise.userservice.dto.CreateUserDto;
+import com.innowise.userservice.dto.ShortUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.entity.User;
 import org.mapstruct.Mapper;
@@ -19,5 +20,7 @@ public interface UserMapper {
   @Mapping(target = "cards", expression = "java(null)")
   @Mapping(target = "birthDate", dateFormat = "dd-MM-yyyy")
   public User toUser(CreateUserDto source);
+
+  ShortUserDto toShortUserDto(User user);
 
 }
