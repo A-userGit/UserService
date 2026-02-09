@@ -81,7 +81,7 @@ public class ErrorHandlerController {
     return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
   }
 
-  @ExceptionHandler(Unauthorized.class)
+  @ExceptionHandler(AuthorizationServiceException.class)
   public ResponseEntity<String> handleAuthorizationServiceException(final AuthorizationServiceException e) {
     return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
   }

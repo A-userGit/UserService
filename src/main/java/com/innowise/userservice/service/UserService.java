@@ -23,4 +23,6 @@ public interface UserService {
   void deleteUserById(long id);
 
   ShortUserDto getCurrentUser();
+
+  UserDto getFullCurrentUser();
 }

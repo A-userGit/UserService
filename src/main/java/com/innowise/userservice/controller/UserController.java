@@ -69,4 +69,10 @@ public class UserController {
     ShortUserDto currentUser = userService.getCurrentUser();
     return new ResponseEntity<>(currentUser, HttpStatus.OK);
   }
+
+  @GetMapping("current/full")
+  ResponseEntity<UserDto> getCurrentFullUser() {
+    UserDto currentUser = userService.getFullCurrentUser();
+    return new ResponseEntity<>(currentUser, HttpStatus.OK);
+  }
 }

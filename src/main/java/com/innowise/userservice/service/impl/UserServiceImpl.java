@@ -11,15 +11,13 @@ import com.innowise.userservice.mapper.UserMapper;
 import com.innowise.userservice.redis.RedisCacheRepository;
 import com.innowise.userservice.repository.UserRepository;
 import com.innowise.userservice.service.UserService;
+import com.innowise.userservice.util.SecurityUtil;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -91,23 +89,22 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ShortUserDto getCurrentUser() {
-    String email;
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication != null && authentication.isAuthenticated()) {
-      Object principal = authentication.getPrincipal();
-      if (principal instanceof UserDetails) {
-        email = ((UserDetails) principal).getUsername();
-      } else {
-        throw  new AuthenticationServiceException("Invalid auth token format.");
-      }
-    } else {
-      throw  new AuthenticationServiceException("Not authenticated.");
-    }
+    String email= SecurityUtil.getAuthenticatedUserEmail();
     User byEmail = userRepository.findByEmail(email);
     if(byEmail==null){
       throw new AuthenticationServiceException("User not found.");
     }
     return mapper.toShortUserDto(byEmail);
+  }
+
+  @Override
+  public UserDto getFullCurrentUser() {
+    String email= SecurityUtil.getAuthenticatedUserEmail();
+    User byEmail = userRepository.findByEmail(email);
+    if(byEmail==null){
+      throw new AuthenticationServiceException("User not found.");
+    }
+    return mapper.toUserDto(byEmail);
   }
 
   private void checkIfExists(long id) {
