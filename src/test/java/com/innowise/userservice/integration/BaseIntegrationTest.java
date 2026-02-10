@@ -58,7 +58,5 @@ public abstract class BaseIntegrationTest {
     propertyRegistry.add("spring.data.redis.port", () -> redis.getMappedPort(6379).toString());
     propertyRegistry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri",
         () -> server.issuerUrl(".well-known/openid-configuration").toString());
-    //propertyRegistry.add("spring.security.oauth2.resourceserver.jwt.jwk-set-uri",
-    //    () -> "http://localhost:8082/oauth2/jwks");
   }
 }
