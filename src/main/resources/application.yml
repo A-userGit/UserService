@@ -2,7 +2,7 @@ server:
   port: ${PORT}
 spring:
   profiles:
-    default: local
+    default: ${SPRING_PROFILE}
   application:
     name: user-service
     port: ${PORT}
