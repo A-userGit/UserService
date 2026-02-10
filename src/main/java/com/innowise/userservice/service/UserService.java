@@ -1,6 +1,7 @@
 package com.innowise.userservice.service;
 
 import com.innowise.userservice.dto.CreateUserDto;
+import com.innowise.userservice.dto.ShortUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.entity.User;
 import java.util.List;
@@ -20,4 +21,8 @@ public interface UserService {
   UserDto updateUserById(UserDto userData);
 
   void deleteUserById(long id);
+
+  ShortUserDto getCurrentUser();
+
+  UserDto getFullCurrentUser();
 }

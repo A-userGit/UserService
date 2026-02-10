@@ -42,7 +42,7 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         .csrf(AbstractHttpConfigurer::disable)
-        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        .cors(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers(AUTH_WHITE_LIST).permitAll()
             .anyRequest().authenticated()
@@ -55,20 +55,5 @@ public class SecurityConfig {
   @Bean
   public JwtDecoder jwtDecoder() {
     return JwtDecoders.fromIssuerLocation(properties.getIssuerUri());
-  }
-
-  @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    CorsConfiguration config = new CorsConfiguration();
-    config.addAllowedHeader("Access-Control-Allow-Origin");
-    config.addAllowedHeader("Authorization");
-    config.addAllowedHeader("Content-Type");
-    config.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "PATCH", "HEAD", "PUT", "DELETE"));
-    config.setAllowedOriginPatterns(List.of("http://localhost:8080*", "http://localhost:8082*", "http://auth-service:8082*",
-         "http://user-service:8080*", "http://order-service:8083*", "http://localhost:8083*"));
-    config.setAllowCredentials(true);
-    source.registerCorsConfiguration("/**", config);
-    return source;
   }
 }

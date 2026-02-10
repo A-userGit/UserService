@@ -2,6 +2,7 @@ package com.innowise.userservice.service.impl;
 
 import com.innowise.userservice.aop.MultiCacheable;
 import com.innowise.userservice.dto.CreateUserDto;
+import com.innowise.userservice.dto.ShortUserDto;
 import com.innowise.userservice.dto.UserDto;
 import com.innowise.userservice.entity.User;
 import com.innowise.userservice.exception.ObjectAlreadyExistsException;
@@ -10,11 +11,13 @@ import com.innowise.userservice.mapper.UserMapper;
 import com.innowise.userservice.redis.RedisCacheRepository;
 import com.innowise.userservice.repository.UserRepository;
 import com.innowise.userservice.service.UserService;
+import com.innowise.userservice.util.SecurityUtil;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -82,6 +85,26 @@ public class UserServiceImpl implements UserService {
   public void deleteUserById(long id) {
     checkIfExists(id);
     userRepository.deleteById(id);
+  }
+
+  @Override
+  public ShortUserDto getCurrentUser() {
+    String email= SecurityUtil.getAuthenticatedUserEmail();
+    User byEmail = userRepository.findByEmail(email);
+    if(byEmail==null){
+      throw new AuthenticationServiceException("User not found.");
+    }
+    return mapper.toShortUserDto(byEmail);
+  }
+
+  @Override
+  public UserDto getFullCurrentUser() {
+    String email= SecurityUtil.getAuthenticatedUserEmail();
+    User byEmail = userRepository.findByEmail(email);
+    if(byEmail==null){
+      throw new AuthenticationServiceException("User not found.");
+    }
+    return mapper.toUserDto(byEmail);
   }
 
   private void checkIfExists(long id) {
