@@ -1,4 +1,4 @@
-package com.innowise.userservice.dto;
+package com.shop.userservice.dto;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;

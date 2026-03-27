@@ -1,9 +1,9 @@
-package com.innowise.userservice.mapper;
+package com.shop.userservice.mapper;
 
-import com.innowise.userservice.dto.CreateUserDto;
-import com.innowise.userservice.dto.ShortUserDto;
-import com.innowise.userservice.dto.UserDto;
-import com.innowise.userservice.entity.User;
+import com.shop.userservice.dto.CreateUserDto;
+import com.shop.userservice.dto.ShortUserDto;
+import com.shop.userservice.dto.UserDto;
+import com.shop.userservice.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

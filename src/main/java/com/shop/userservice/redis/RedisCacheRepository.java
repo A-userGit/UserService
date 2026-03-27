@@ -1,4 +1,4 @@
-package com.innowise.userservice.redis;
+package com.shop.userservice.redis;
 
 import java.util.List;
 import java.util.Map;

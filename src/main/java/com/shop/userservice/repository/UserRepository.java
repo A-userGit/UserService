@@ -1,6 +1,6 @@
-package com.innowise.userservice.repository;
+package com.shop.userservice.repository;
 
-import com.innowise.userservice.entity.User;
+import com.shop.userservice.entity.User;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;

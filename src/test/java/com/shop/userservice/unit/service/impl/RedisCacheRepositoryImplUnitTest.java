@@ -1,4 +1,4 @@
-package com.innowise.userservice.unit.service.impl;
+package com.shop.userservice.unit.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,7 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.innowise.userservice.redis.impl.RedisCacheRepositoryImpl;
+import com.shop.userservice.redis.impl.RedisCacheRepositoryImpl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

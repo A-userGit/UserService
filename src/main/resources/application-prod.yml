@@ -1,5 +1,5 @@
 PORT: 80
 DB_HOST: postgres
-AUTH_ISSUER: http://auth-service
-AUTH_JWKS: http://auth-service/oauth2/jwks
+AUTH_ISSUER: https://auth-service
+AUTH_JWKS: https://auth-service/oauth2/jwks
 REDIS_HOST: redis

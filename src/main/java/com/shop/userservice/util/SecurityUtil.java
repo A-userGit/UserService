@@ -1,4 +1,4 @@
-package com.innowise.userservice.util;
+package com.shop.userservice.util;
 
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;

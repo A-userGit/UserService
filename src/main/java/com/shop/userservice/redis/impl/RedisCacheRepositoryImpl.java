@@ -1,6 +1,6 @@
-package com.innowise.userservice.redis.impl;
+package com.shop.userservice.redis.impl;
 
-import com.innowise.userservice.redis.RedisCacheRepository;
+import com.shop.userservice.redis.RedisCacheRepository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

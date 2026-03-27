@@ -1,7 +1,7 @@
-package com.innowise.userservice.service;
+package com.shop.userservice.service;
 
-import com.innowise.userservice.dto.CardInfoDto;
-import com.innowise.userservice.dto.CreateCardInfoDto;
+import com.shop.userservice.dto.CardInfoDto;
+import com.shop.userservice.dto.CreateCardInfoDto;
 import java.util.List;
 
 public interface CardInfoService {

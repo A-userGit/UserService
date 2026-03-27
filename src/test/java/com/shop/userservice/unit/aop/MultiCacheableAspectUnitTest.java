@@ -1,4 +1,4 @@
-package com.innowise.userservice.unit.aop;
+package com.shop.userservice.unit.aop;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,11 +9,11 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.innowise.userservice.aop.MultiCacheable;
-import com.innowise.userservice.aop.redis.MultiCacheableAspect;
-import com.innowise.userservice.entity.User;
-import com.innowise.userservice.exception.MultiCacheableInvalidArgsException;
-import com.innowise.userservice.redis.RedisCacheRepository;
+import com.shop.userservice.aop.MultiCacheable;
+import com.shop.userservice.aop.redis.MultiCacheableAspect;
+import com.shop.userservice.entity.User;
+import com.shop.userservice.exception.MultiCacheableInvalidArgsException;
+import com.shop.userservice.redis.RedisCacheRepository;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;

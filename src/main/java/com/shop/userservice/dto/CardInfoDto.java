@@ -1,11 +1,9 @@
-package com.innowise.userservice.dto;
+package com.shop.userservice.dto;
 
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Getter
 @Setter

@@ -1,4 +1,4 @@
-package com.innowise.userservice.integration;
+package com.shop.userservice.integration;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -7,8 +7,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.innowise.userservice.dto.CreateUserDto;
-import com.innowise.userservice.dto.UserDto;
+import com.shop.userservice.dto.CreateUserDto;
+import com.shop.userservice.dto.UserDto;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

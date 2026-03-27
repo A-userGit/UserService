@@ -1,15 +1,14 @@
-package com.innowise.userservice.exception.handler;
+package com.shop.userservice.exception.handler;
 
-import com.innowise.userservice.exception.MultiCacheableInvalidArgsException;
-import com.innowise.userservice.exception.ObjectAlreadyExistsException;
-import com.innowise.userservice.exception.ObjectNotFoundException;
+import com.shop.userservice.exception.MultiCacheableInvalidArgsException;
+import com.shop.userservice.exception.ObjectAlreadyExistsException;
+import com.shop.userservice.exception.ObjectNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

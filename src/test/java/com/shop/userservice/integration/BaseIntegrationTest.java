@@ -1,6 +1,6 @@
-package com.innowise.userservice.integration;
+package com.shop.userservice.integration;
 
-import com.innowise.userservice.UserServiceApplication;
+import com.shop.userservice.UserServiceApplication;
 import com.redis.testcontainers.RedisContainer;
 import java.net.InetAddress;
 import java.net.UnknownHostException;

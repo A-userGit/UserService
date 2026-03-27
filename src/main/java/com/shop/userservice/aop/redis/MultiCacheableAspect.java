@@ -1,8 +1,8 @@
-package com.innowise.userservice.aop.redis;
+package com.shop.userservice.aop.redis;
 
-import com.innowise.userservice.aop.MultiCacheable;
-import com.innowise.userservice.exception.MultiCacheableInvalidArgsException;
-import com.innowise.userservice.redis.RedisCacheRepository;
+import com.shop.userservice.aop.MultiCacheable;
+import com.shop.userservice.exception.MultiCacheableInvalidArgsException;
+import com.shop.userservice.redis.RedisCacheRepository;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;

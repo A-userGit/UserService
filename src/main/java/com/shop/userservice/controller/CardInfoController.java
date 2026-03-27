@@ -1,14 +1,13 @@
-package com.innowise.userservice.controller;
+package com.shop.userservice.controller;
 
-import com.innowise.userservice.dto.CardInfoDto;
-import com.innowise.userservice.dto.CreateCardInfoDto;
-import com.innowise.userservice.service.CardInfoService;
+import com.shop.userservice.dto.CardInfoDto;
+import com.shop.userservice.dto.CreateCardInfoDto;
+import com.shop.userservice.service.CardInfoService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

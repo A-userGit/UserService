@@ -1,4 +1,4 @@
-package com.innowise.userservice.config;
+package com.shop.userservice.config;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,9 +1,9 @@
-package com.innowise.userservice.mapper;
+package com.shop.userservice.mapper;
 
-import com.innowise.userservice.dto.CardInfoDto;
-import com.innowise.userservice.dto.CreateCardInfoDto;
-import com.innowise.userservice.entity.CardInfo;
-import com.innowise.userservice.entity.User;
+import com.shop.userservice.dto.CardInfoDto;
+import com.shop.userservice.dto.CreateCardInfoDto;
+import com.shop.userservice.entity.CardInfo;
+import com.shop.userservice.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

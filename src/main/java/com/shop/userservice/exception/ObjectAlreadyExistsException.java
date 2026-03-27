@@ -1,4 +1,4 @@
-package com.innowise.userservice.exception;
+package com.shop.userservice.exception;
 
 public class ObjectAlreadyExistsException extends RuntimeException {
 

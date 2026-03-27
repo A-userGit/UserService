@@ -1,4 +1,4 @@
-package com.innowise.userservice.unit;
+package com.shop.userservice.unit;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -1,4 +1,4 @@
-package com.innowise.userservice.aop;
+package com.shop.userservice.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

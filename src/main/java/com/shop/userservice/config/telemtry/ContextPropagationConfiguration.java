@@ -1,4 +1,4 @@
-package com.innowise.userservice.config.telemtry;
+package com.shop.userservice.config.telemtry;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

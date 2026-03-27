@@ -1,4 +1,4 @@
-package com.innowise.userservice.unit.service.impl;
+package com.shop.userservice.unit.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,16 +8,16 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.innowise.userservice.dto.CardInfoDto;
-import com.innowise.userservice.dto.CreateCardInfoDto;
-import com.innowise.userservice.entity.CardInfo;
-import com.innowise.userservice.entity.User;
-import com.innowise.userservice.exception.ObjectNotFoundException;
-import com.innowise.userservice.mapper.CardInfoMapper;
-import com.innowise.userservice.redis.RedisCacheRepository;
-import com.innowise.userservice.repository.CardInfoRepository;
-import com.innowise.userservice.service.UserService;
-import com.innowise.userservice.service.impl.CardInfoServiceImpl;
+import com.shop.userservice.dto.CardInfoDto;
+import com.shop.userservice.dto.CreateCardInfoDto;
+import com.shop.userservice.entity.CardInfo;
+import com.shop.userservice.entity.User;
+import com.shop.userservice.exception.ObjectNotFoundException;
+import com.shop.userservice.mapper.CardInfoMapper;
+import com.shop.userservice.redis.RedisCacheRepository;
+import com.shop.userservice.repository.CardInfoRepository;
+import com.shop.userservice.service.UserService;
+import com.shop.userservice.service.impl.CardInfoServiceImpl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

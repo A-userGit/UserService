@@ -1,4 +1,4 @@
-package com.innowise.userservice.config;
+package com.shop.userservice.config;
 
 import java.time.Duration;
 import org.springframework.boot.context.properties.ConfigurationProperties;

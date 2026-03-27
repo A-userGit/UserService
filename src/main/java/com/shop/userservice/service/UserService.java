@@ -1,9 +1,9 @@
-package com.innowise.userservice.service;
+package com.shop.userservice.service;
 
-import com.innowise.userservice.dto.CreateUserDto;
-import com.innowise.userservice.dto.ShortUserDto;
-import com.innowise.userservice.dto.UserDto;
-import com.innowise.userservice.entity.User;
+import com.shop.userservice.dto.CreateUserDto;
+import com.shop.userservice.dto.ShortUserDto;
+import com.shop.userservice.dto.UserDto;
+import com.shop.userservice.entity.User;
 import java.util.List;
 
 public interface UserService {

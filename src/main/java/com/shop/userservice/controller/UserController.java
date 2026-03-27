@@ -1,9 +1,9 @@
-package com.innowise.userservice.controller;
+package com.shop.userservice.controller;
 
-import com.innowise.userservice.dto.CreateUserDto;
-import com.innowise.userservice.dto.ShortUserDto;
-import com.innowise.userservice.dto.UserDto;
-import com.innowise.userservice.service.UserService;
+import com.shop.userservice.dto.CreateUserDto;
+import com.shop.userservice.dto.ShortUserDto;
+import com.shop.userservice.dto.UserDto;
+import com.shop.userservice.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
